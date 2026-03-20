@@ -22,5 +22,8 @@ jobs:
       - name: List files in repo
         run: ls -la
 
-      - name: Print operating system
+     - name: Print operating system
         run: echo "OS is $RUNNER_OS"
+
+      - name: This will fail
+        run: exit 1
