@@ -1,26 +1,14 @@
-name: Hello GitHub Actions
+name: Hello Workflow
 
 on:
   push:
-    branches: [ "main" ]
-  workflow_dispatch:
 
 jobs:
-  say-hello:
+  greet:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Hello World
-        run: echo "Hello, GitHub Actions! My first workflow is running!"
-
-      - name: Runner info
-        run: |
-          echo "Runner OS : $RUNNER_OS"
-          echo "Repository: $GITHUB_REPOSITORY"
-          echo "Branch    : $GITHUB_REF_NAME"
-          echo "Triggered : $GITHUB_ACTOR"
-
-      - name: Pipeline complete
-        run: echo "Day 40 - Pipeline successful!"
+      - name: Print greeting
+        run: echo "Hello from GitHub Actions!"
