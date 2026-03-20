@@ -25,5 +25,5 @@ jobs:
       - name: Print operating system
         run: echo "OS is $RUNNER_OS"
 
-      - name: This will fail
-        run: exit 1
+      - name: This will not fail
+        run: echo "Fixed! Pipeline working again!"
