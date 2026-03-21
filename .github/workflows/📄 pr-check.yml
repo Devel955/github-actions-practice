@@ -4,18 +4,17 @@ on:
   pull_request:
     branches:
       - main
-    types: 
+    types:
       - opened
       - synchronize
 
 jobs:
-  pr-checks:
-     runs-on: ubuntu-latest
-     steps:
-       - name: Checkout code
-         uses: actions/checkout@v4
+  pr-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-        - name: Print PR branch info
-          run: |
-             echo "PR check running for branch: ${{ github.head_ref }}"
-    
+      - name: Print branch name
+        run: |
+          echo "PR check running for branch: ${{ github.head_ref }}"
