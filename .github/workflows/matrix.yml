@@ -14,9 +14,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.10", "3.11", "3.12"]
-        exclude:
-          - os: windows-latest
-            python-version: "3.10"
 
     steps:
       - name: Checkout code
@@ -33,3 +30,19 @@ jobs:
 
       - name: Print Python version
         run: python --version
+```
+
+### Step 4 — Commit karo
+- Message: `Remove exclude - show 6 jobs`
+- **Commit to main** ✅
+
+---
+
+Commit hone ke baad **Actions → Matrix Build** mein **6 jobs** dikhenge:
+```
+Ubuntu  + 3.10 ❌ (exit 1 se fail)
+Ubuntu  + 3.11 ✅
+Ubuntu  + 3.12 ✅
+Windows + 3.10 ✅ (ab exclude nahi!)
+Windows + 3.11 ✅
+Windows + 3.12 ✅
