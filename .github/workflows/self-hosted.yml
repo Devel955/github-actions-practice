@@ -1,0 +1,30 @@
+name: Day 42 - Self-Hosted Runner
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  self-hosted-job:
+    runs-on: [self-hosted, linux, my-linux-runner]
+    steps:
+      - name: Print Hostname
+        run: |
+          echo "Hostname: $(hostname)"
+          echo "User: $(whoami)"
+          echo "Working Dir: $(pwd)"
+
+      - name: Create Proof File
+        run: |
+          FILE="$HOME/self-hosted-proof.txt"
+          echo "Hostname: $(hostname)" > $FILE
+          echo "User: $(whoami)" >> $FILE
+          echo "Date: $(date)" >> $FILE
+          echo "File created at: $FILE"
+          cat $FILE
+
+      - name: Verify File
+        run: |
+          ls -lh $HOME/self-hosted-proof.txt
+          echo "Job ran on YOUR machine!"
