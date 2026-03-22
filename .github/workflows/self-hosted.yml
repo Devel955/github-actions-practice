@@ -8,23 +8,25 @@ on:
 jobs:
   self-hosted-job:
     runs-on: [self-hosted, linux, my-linux-runner]
+
     steps:
-      - name: Print Hostname
+      - name: Hostname print karo
         run: |
           echo "Hostname: $(hostname)"
           echo "User: $(whoami)"
-          echo "Working Dir: $(pwd)"
 
-      - name: Create Proof File
+      - name: Working directory print karo
         run: |
-          FILE="$HOME/self-hosted-proof.txt"
-          echo "Hostname: $(hostname)" > $FILE
-          echo "User: $(whoami)" >> $FILE
-          echo "Date: $(date)" >> $FILE
-          echo "File created at: $FILE"
-          cat $FILE
+          echo "PWD: $(pwd)"
+          ls -la
 
-      - name: Verify File
+      - name: File banao aur verify karo
         run: |
-          ls -lh $HOME/self-hosted-proof.txt
-          echo "Job ran on YOUR machine!"
+          FILE="$HOME/runner-demo-$(date +%Y%m%d-%H%M%S).txt"
+          echo "Created by GitHub Actions self-hosted runner" > "$FILE"
+          echo "Hostname: $(hostname)" >> "$FILE"
+          echo "Run ID: $GITHUB_RUN_ID" >> "$FILE"
+          echo "Date: $(date)" >> "$FILE"
+          echo "---File contents---"
+          cat "$FILE"
+          echo "✅ File exist kar rahi hai: $FILE"
