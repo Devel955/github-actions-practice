@@ -1,0 +1,40 @@
+name: Multi-OS Runner Demo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ubuntu-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: OS info
+        run: |
+          echo "OS: $RUNNER_OS"
+          echo "Hostname: $(hostname)"
+          echo "User: $(whoami)"
+      - name: Tool versions
+        run: |
+          echo "Docker:  $(docker --version)"
+          echo "Python:  $(python3 --version)"
+          echo "Node:    $(node --version)"
+          echo "Git:     $(git --version)"
+
+  windows-job:
+    runs-on: windows-latest
+    steps:
+      - name: OS info
+        run: |
+          echo "OS: $env:RUNNER_OS"
+          echo "Hostname: $env:COMPUTERNAME"
+          echo "User: $env:USERNAME"
+
+  macos-job:
+    runs-on: macos-latest
+    steps:
+      - name: OS info
+        run: |
+          echo "OS: $RUNNER_OS"
+          echo "Hostname: $(hostname)"
+          echo "User: $(whoami)"
