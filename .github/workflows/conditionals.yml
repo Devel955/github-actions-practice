@@ -10,6 +10,7 @@ jobs:
   push-only-job:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
+
     steps:
       - name: This job runs only on push
         run: echo "This job is running because the event is push."
@@ -19,13 +20,14 @@ jobs:
         run: echo "This step runs only on the main branch."
 
       - name: Intentional failing step
-        id: failing_step
+        id: fail_step
         run: |
           echo "This step will fail intentionally."
+          exit 1
         continue-on-error: true
 
       - name: Run when previous step failed
-        if: steps.failing_step.outcome == 'failure'
+        if: steps.fail_step.outcome == 'failure'
         run: echo "Previous step failed, but workflow continued."
 
       - name: Workflow continues after error
