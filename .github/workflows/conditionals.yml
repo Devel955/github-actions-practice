@@ -22,7 +22,6 @@ jobs:
         id: failing_step
         run: |
           echo "This step will fail intentionally."
-          exit 1
         continue-on-error: true
 
       - name: Run when previous step failed
