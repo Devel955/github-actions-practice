@@ -1,0 +1,21 @@
+name: Day 44 - Artifact Demo
+
+on:
+  push:
+    branches:
+      - main
+      - "**"
+
+jobs:
+  generate-artifact:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create a report file
+        run: |
+          mkdir -p output
+          echo "CI test report generated on $(date)" > output/report.txt
+          echo "Artifact demo for Day 44" >> output/report.txt
+
+      - name: Upload artifact
+
