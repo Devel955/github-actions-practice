@@ -1,0 +1,29 @@
+name: "Setup and Greet"
+description: "A composite action that prints app details"
+
+inputs:
+  app_name:
+    description: "Application name"
+    required: true
+  environment:
+    description: "Environment name"
+    required: true
+
+outputs:
+  greet_message:
+    description: "Greeting output message"
+    value: ${{ steps.greet.outputs.greet_message }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Print app info
+      id: greet
+      shell: bash
+      run: |
+        echo "Starting composite action..."
+        echo "Building app: ${{ inputs.app_name }}"
+        echo "Environment: ${{ inputs.environment }}"
+        echo "GitHub Actor: ${{ github.actor }}"
+        echo "Branch Name: ${{ github.ref_name }}"
+        echo "greet_message=Composite action completed for ${{ inputs.app_name }} in ${{ inputs.environment }}" >> $GITHUB_OUTPUT
