@@ -1,0 +1,17 @@
+name: Smart Triggers
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/*'
+    paths:
+      - 'src/**'
+      - 'app/**'
+
+jobs:
+  run-on-code-change:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run job
+        run: echo "Code in src/ or app/ changed"
