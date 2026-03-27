@@ -19,4 +19,5 @@ jobs:
           environment: "production"
 
       - name: Print composite output
-        run: echo "Output: ${{ steps.composite_step.outputs.greet_message }}"
+        run: |
+          echo "Output: ${{ steps.composite_step.outputs.greet_message }}"
