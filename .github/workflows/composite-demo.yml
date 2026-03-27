@@ -1,0 +1,22 @@
+name: Composite Action Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-composite:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run composite action
+        id: composite_step
+        uses: ./.github/actions/setup-and-greet
+        with:
+          app_name: "my-web-app"
+          environment: "production"
+
+      - name: Print composite output
+        run: echo "Output: ${{ steps.composite_step.outputs.greet_message }}"
