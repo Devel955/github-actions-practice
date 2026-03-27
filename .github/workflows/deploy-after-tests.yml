@@ -9,9 +9,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Check workflow result
-        run: echo "Triggered workflow conclusion: ${{ github.event.workflow_run.conclusion }}"
+        run: |
+          echo "Triggered workflow conclusion: ${{ github.event.workflow_run.conclusion }}"
 
       - name: Stop if tests failed
         if: ${{ github.event.workflow_run.conclusion != 'success' }}
@@ -21,4 +23,5 @@ jobs:
 
       - name: Deploy
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        run: echo "Deploying after successful tests"
+        run: |
+          echo "Deploying after successful tests 🚀"
