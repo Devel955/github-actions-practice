@@ -10,4 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print payload
-        run: echo "Environment: ${{ github.event.client_payload.environment }}"
+        run: |
+          echo "Environment: ${{ github.event.client_payload.environment }}"
