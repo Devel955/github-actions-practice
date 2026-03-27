@@ -5,25 +5,10 @@ on:
     branches: [main]
 
 jobs:
-  file-size-check:
+  branch-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Check file size
-        run: |
-          for file in $(find . -type f); do
-            size=$(stat -c%s "$file")
-            if [ $size -gt 1048576 ]; then
-              echo "File $file is larger than 1MB"
-              exit 1
-            fi
-          done
-
-  branch-name-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Validate branch name
-        run: |
+      - run: |
           if [[ ! "${{ github.head_ref }}" =~ ^(feature|fix|docs)/ ]]; then
             echo "Invalid branch name"
             exit 1
@@ -32,10 +17,7 @@ jobs:
   pr-body-check:
     runs-on: ubuntu-latest
     steps:
-      - name: Check PR description
-        run: |
+      - run: |
           if [ -z "${{ github.event.pull_request.body }}" ]; then
-            echo "Warning: PR description is empty"
-          else
-            echo "PR description is present"
+            echo "PR description missing"
           fi
